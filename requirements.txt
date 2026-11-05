@@ -1,0 +1,12 @@
+# For pip users who do not use uv. `pyproject.toml` is authoritative.
+# Phase 0 core only. Heavy ML/ASR/API extras are added in the phase that needs them,
+# after confirming the download size (see PROJECT_SPEC.md Section 19.2).
+pydantic>=2.9,<3
+pydantic-settings>=2.5,<3
+pyyaml>=6.0,<7
+
+# Dev tools (install with: pip install -r requirements.txt)
+pytest>=8.3,<10
+ruff>=0.6,<1
+mypy>=1.11,<3
+types-pyyaml>=6.0,<7

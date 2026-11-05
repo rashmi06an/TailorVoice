@@ -1,0 +1,57 @@
+# TailorVoice default configuration.
+# Models, weights, thresholds, and seeds live here so runs are reproducible and tweakable
+# without touching code. Values marked (Phase N) are placeholders until that phase tunes them.
+
+seed: 42
+
+paths:
+  data_raw: data/raw
+  data_annotated: data/annotated
+  data_splits: data/splits
+  taxonomy: data/taxonomy/skills_taxonomy.json
+  pairs: data/pairs
+  private: data/private
+  experiments: experiments
+
+# --- Models (all free / public; downloaded in the phase that needs them) ------------------
+models:
+  asr:
+    size: base            # faster-whisper: base | small
+    compute_type: int8    # CPU-friendly
+  ner:
+    backbone: distilbert-base-uncased
+  sbert:
+    name: sentence-transformers/all-MiniLM-L6-v2
+  nli:
+    name: cross-encoder/nli-deberta-v3-small
+
+# --- NER labels (BIO applied on top) ------------------------------------------------------
+ner_labels: [SKILL, TOOL, RESPONSIBILITY, EXPERIENCE_LEVEL, EDUCATION]
+
+# --- Data splits (by job description, never by sentence) ----------------------------------
+splits:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+
+# --- Scoring (hand-weighted formula baseline; weights sum to 100) (Phase 5) ---------------
+scoring:
+  weights:
+    required_skill_coverage: 45
+    preferred_skill_coverage: 15
+    semantic_similarity: 20
+    project_relevance: 10
+    experience_match: 5
+    education_match: 5
+
+# --- Thresholds ---------------------------------------------------------------------------
+thresholds:
+  skill_fuzzy_match: 85        # rapidfuzz score 0-100 (Phase 4)
+  skill_sbert_match: 0.60      # cosine fallback for normalisation (Phase 4)
+  nli_entailment: 0.80         # verifier entailment threshold (Phase 7)
+
+# --- Rewriter -----------------------------------------------------------------------------
+rewrite:
+  max_words_per_bullet: 25
+  temperature: 0.2
+  max_retries: 1

@@ -1,0 +1,9 @@
+{
+  "id": "jd_sample_0001",
+  "title": "Machine Learning Engineer (New Grad)",
+  "company": "Acme AI (sample)",
+  "text": "We are looking for a New Grad Machine Learning Engineer to join our applied ML team.\n\nResponsibilities:\n- Build and evaluate ML models for text classification and information extraction.\n- Ship features to production and monitor their performance.\n- Collaborate with product and data teams.\n\nRequirements:\n- Bachelor's degree in Computer Science, AI, or a related field.\n- Strong programming in Python; experience with PyTorch or TensorFlow.\n- Familiarity with NLP and the Hugging Face Transformers library.\n- Comfortable with Git and Linux.\n\nPreferred:\n- Experience with Docker and AWS.\n- Exposure to scikit-learn and Pandas.\n\nAbout us: Acme AI is a sample company used only for TailorVoice demos. This posting is synthetic.",
+  "source": "synthetic-sample",
+  "collected_on": "2026-11-05",
+  "synthetic": true
+}

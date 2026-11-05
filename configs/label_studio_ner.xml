@@ -1,0 +1,17 @@
+<!--
+  Label Studio labelling config for TailorVoice NER (PROJECT_SPEC.md Section 5.2).
+  Import this under Project Settings -> Labeling Interface -> Code.
+  The task JSON must expose the posting text as a field named "text" (our JD loader output).
+  Labels match configs/default.yaml: ner_labels and docs/annotation_guidelines.md.
+-->
+<View>
+  <Header value="Label the requirements in this job description"/>
+  <Labels name="label" toName="text">
+    <Label value="SKILL" background="#2563eb"/>
+    <Label value="TOOL" background="#059669"/>
+    <Label value="RESPONSIBILITY" background="#d97706"/>
+    <Label value="EXPERIENCE_LEVEL" background="#7c3aed"/>
+    <Label value="EDUCATION" background="#db2777"/>
+  </Labels>
+  <Text name="text" value="$text"/>
+</View>

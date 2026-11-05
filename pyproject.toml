@@ -1,0 +1,82 @@
+[project]
+name = "tailorvoice"
+version = "0.1.0"
+description = "Voice-driven, honest resume tailoring: ASR -> NER -> semantic matching -> explainable scoring -> verified rewriting."
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+authors = [{ name = "Rashmi Anand" }]
+
+# Core dependencies installed from Phase 0. Kept light on purpose: the heavy ML / ASR / API
+# packages live in optional groups below and are installed in the phase that first needs them,
+# after confirming the download size (zero-cost rule, Section 19.2 of PROJECT_SPEC.md).
+dependencies = [
+    "pydantic>=2.9,<3",
+    "pydantic-settings>=2.5,<3",
+    "pyyaml>=6.0,<7",
+]
+
+# Heavy, phase-specific extras. Install with e.g. `uv pip install -e '.[ml]'` when the phase
+# that needs them starts. Versions are pinned loosely here and frozen into requirements.txt /
+# uv.lock as each is actually installed, so "reproducibility" holds for what is really in use.
+[project.optional-dependencies]
+nlp = [
+    "spacy>=3.7,<4",
+    "scikit-learn>=1.5,<2",
+    "rapidfuzz>=3.9,<4",
+]
+ml = [
+    "torch>=2.3,<3",
+    "transformers>=4.44,<5",
+    "sentence-transformers>=3.0,<4",
+    "seqeval>=1.2,<2",
+    "shap>=0.46,<1",
+]
+asr = [
+    "faster-whisper>=1.0,<2",
+]
+api = [
+    "fastapi>=0.115,<1",
+    "uvicorn[standard]>=0.30,<1",
+    "sqlalchemy>=2.0,<3",
+    "python-multipart>=0.0.9,<1",
+    "reportlab>=4.2,<5",
+    "httpx>=0.27,<1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3,<10",
+    "ruff>=0.6,<1",
+    "mypy>=1.11,<3",
+    "types-pyyaml>=6.0,<7",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tailorvoice"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "scripts", "tests"]
+
+[tool.ruff.lint]
+# E/F = pyflakes+pycodestyle, I = isort, UP = pyupgrade, B = bugbear, SIM = simplify.
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]  # line length handled by the formatter
+
+[tool.mypy]
+python_version = "3.11"
+# Lenient on purpose (spec Section 2): catch obvious type mistakes without blocking a student build.
+ignore_missing_imports = true
+warn_unused_ignores = false
+check_untyped_defs = true
+disallow_untyped_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+pythonpath = ["src"]

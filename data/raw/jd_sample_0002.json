@@ -1,0 +1,9 @@
+{
+  "id": "jd_sample_0002",
+  "title": "Backend Software Engineer",
+  "company": "Globex (sample)",
+  "text": "Globex is hiring a Backend Software Engineer to build reliable APIs at scale.\n\nWhat you'll do:\n- Design and implement REST APIs using Python and FastAPI.\n- Work with PostgreSQL and Redis for storage and caching.\n- Write tests and participate in code reviews.\n\nWhat we're looking for:\n- 2+ years of backend development experience.\n- Proficiency in Python; familiarity with SQL databases.\n- Experience deploying services with Docker and Kubernetes.\n- Good communication and teamwork.\n\nNice to have:\n- Experience with AWS or Google Cloud Platform.\n- Knowledge of CI pipelines.\n\nNote: Globex is a sample company; this posting is synthetic and used only for TailorVoice demos.",
+  "source": "synthetic-sample",
+  "collected_on": "2026-11-05",
+  "synthetic": true
+}
